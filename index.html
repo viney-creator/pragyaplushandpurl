@@ -444,7 +444,6 @@ html+=`
 document.getElementById("productList").innerHTML=html;
 }
 
-// Fixed a tiny capitalization bug here ("Search" to "search") to make search work flawlessly!
 function searchProducts(){
 const value = document.getElementById("search").value.toLowerCase();
 const filtered = products.filter(product => product.name.toLowerCase().includes(value));
@@ -497,26 +496,43 @@ document.getElementById("cartItems").innerHTML=html;
 document.getElementById("total").innerText=total;
 }
 
+/* --- FIX COMPONENT: SECURE WHATSAPP ORDER FORMATTING --- */
 function sendWhatsAppOrder(){
 if(cart.length===0){
 alert("Cart is empty");
 return;
 }
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let address=document.getElementById("address").value;
+
+let name=document.getElementById("name").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let address=document.getElementById("address").value.trim();
+
+if(!name || !phone || !address){
+alert("Please complete Name, Phone, and Address fields before submitting!");
+return;
+}
+
 let total=0;
-let msg="🧸 *NEW ORDER - PRAGYA PLUSH & PURL*%0A%0A";
-msg+="👤 Name: "+name+"%0A";
-msg+="📱 Phone: "+phone+"%0A";
-msg+="📍 Address: "+address+"%0A%0A";
-msg+="🛒 *Products*%0A";
+
+// Constructing clean plain text layout with system line-breaks (\n)
+let msg = "🛒 NEW ORDER\n\n";
+msg += "Name: " + name + "\n";
+msg += "Phone: " + phone + "\n\n";
+msg += "Address:\n" + address + "\n\n";
+msg += "Products:\n";
+
 cart.forEach(item=>{
-total+=item.price*item.qty;
-msg+=`${item.name} x ${item.qty} = ₹${item.price*item.qty}%0A`;
+let itemCost = item.price * item.qty;
+total += itemCost;
+msg += `${item.name} x ${item.qty} = ₹${itemCost}\n`;
 });
-msg+=`%0A💰 Total: ₹${total}`;
-window.open(`https://wa.me/${whatsappNumber}?text=${msg}`,"_blank");
+
+msg += `\n\nTotal Amount: ₹${total}`;
+
+// encodeURIComponent ensures special symbols (like ₹) and linebreaks translate perfectly to URL
+let finalLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+window.open(finalLink, "_blank");
 }
 
 renderProducts();
