@@ -16,7 +16,27 @@ font-family:'Segoe UI',sans-serif;
 body{
 background:linear-gradient(135deg,#ffd6e7,#ffe6f0,#fff0f6);
 min-height:100vh;
+position: relative;
+overflow-x: hidden;
 }
+
+/* Scalloped side borders to replicate the mockup edges */
+body::before, body::after {
+  content: "◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦";
+  position: fixed;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  word-wrap: break-word;
+  writing-mode: vertical-rl;
+  color: #ffb3d9;
+  font-size: 20px;
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+body::before { left: 5px; }
+body::after { right: 5px; }
 
 header{
 background:linear-gradient(90deg,#ff4da6,#ff85c2);
@@ -24,6 +44,8 @@ color:white;
 text-align:center;
 padding:25px;
 box-shadow:0 3px 10px rgba(0,0,0,.15);
+position: relative;
+z-index: 2;
 }
 
 header h1{
@@ -40,6 +62,27 @@ width:95%;
 max-width:1200px;
 margin:auto;
 padding:20px;
+position: relative;
+z-index: 2;
+}
+
+/* Crafted Happiness Ribbon Sticker */
+.ribbon-tag {
+  text-align: center;
+  margin: 10px auto -5px auto;
+}
+.ribbon-tag span {
+  background: white;
+  color: #ff4da6;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(255, 77, 166, 0.15);
+  border: 2px dashed #ff85c2;
+  display: inline-block;
 }
 
 .search-box{
@@ -54,6 +97,13 @@ border:none;
 border-radius:30px;
 font-size:16px;
 box-shadow:0 2px 8px rgba(0,0,0,.1);
+outline: none;
+border: 2px solid transparent;
+transition: 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #ff85c2;
 }
 
 .products{
@@ -107,10 +157,13 @@ width:100%;
 border-radius:10px;
 cursor:pointer;
 font-size:15px;
+font-weight: bold;
+transition: 0.2s;
 }
 
 .btn:hover{
 background:#e60073;
+transform: scale(1.02);
 }
 
 .cart{
@@ -141,6 +194,7 @@ background:#ffb3d9;
 border:none;
 border-radius:5px;
 cursor:pointer;
+font-weight: bold;
 }
 
 .total{
@@ -156,22 +210,113 @@ padding:12px;
 margin-top:10px;
 border:1px solid #ddd;
 border-radius:10px;
+outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: #ff4da6;
 }
 
 .whatsapp{
 margin-top:15px;
 background:#25D366;
 }
+.whatsapp:hover {
+  background: #20ba5a;
+}
 
 footer{
 text-align:center;
 padding:20px;
-margin-top:20px;
+margin-top:40px;
 color:#777;
+position: relative;
+z-index: 2;
+}
+
+/* --- STICKERS BACKGROUND STYLING --- */
+.sticker-container {
+  position: fixed;
+  top: 120px;
+  width: 100%;
+  height: calc(100vh - 120px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sticker {
+  position: absolute;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08), inset 0 0 0 2px #fff;
+  border: 2px solid #ffccd5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ff4da6;
+  user-select: none;
+  animation: gentleFloat 6s ease-in-out infinite alternate;
+}
+
+.sticker.emoji-only {
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+/* Dynamic positioning for left side empty columns */
+.st-l1 { top: 5%; left: 2%; animation-delay: 0s; }
+.st-l2 { top: 18%; left: 3%; animation-delay: 1s; font-size: 11px; }
+.st-l3 { top: 32%; left: 2%; animation-delay: 2s; }
+.st-l4 { top: 45%; left: 4%; animation-delay: 0.5s; }
+.st-l5 { top: 58%; left: 1.5%; animation-delay: 1.5s; }
+.st-l6 { top: 72%; left: 3%; animation-delay: 2.5s; font-size: 11px; }
+.st-l7 { top: 85%; left: 2%; animation-delay: 0.8s; }
+
+/* Dynamic positioning for right side empty columns */
+.st-r1 { top: 6%; right: 2%; animation-delay: 0.5s; }
+.st-r2 { top: 18%; right: 4%; animation-delay: 1.5s; }
+.st-r3 { top: 30%; right: 2%; animation-delay: 2.5s; font-size: 11px; }
+.st-r4 { top: 45%; right: 3%; animation-delay: 1s; }
+.st-r5 { top: 58%; right: 2%; animation-delay: 2s; font-size: 11px; }
+.st-r6 { top: 72%; right: 4%; animation-delay: 0.2s; }
+.st-r7 { top: 86%; right: 2%; animation-delay: 1.8s; font-size: 11px; }
+
+@keyframes gentleFloat {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-12px) rotate(4deg); }
+}
+
+/* Responsive Handling: Hide side decorations on small windows to avoid overlapping content */
+@media (max-width: 1300px) {
+  .sticker-container, body::before, body::after {
+    display: none;
+  }
 }
 </style>
 </head>
 <body>
+
+<div class="sticker-container">
+  <div class="sticker emoji-only st-l1">🧶</div>
+  <div class="sticker st-l2">HANDMADE WITH LOVE</div>
+  <div class="sticker emoji-only st-l3">🐰</div>
+  <div class="sticker emoji-only st-l4">🐾</div>
+  <div class="sticker emoji-only st-l5">🪡</div>
+  <div class="sticker st-l6">CUTE STUFF</div>
+  <div class="sticker emoji-only st-l7">🤍</div>
+
+  <div class="sticker emoji-only st-r1">🌸</div>
+  <div class="sticker emoji-only st-r2">🦆</div>
+  <div class="sticker st-r3">PURL & JOY</div>
+  <div class="sticker emoji-only st-r4">🐸</div>
+  <div class="sticker st-r5">YARN LIFE</div>
+  <div class="sticker emoji-only st-r6">🧸</div>
+  <div class="sticker st-r7">MADE WITH LOVE</div>
+</div>
 
 <header>
 <h1>🧸 Pragya Plush & Purl 🎀</h1>
@@ -181,6 +326,10 @@ color:#777;
 </header>
 
 <div class="container">
+
+<div class="ribbon-tag">
+  <span>🤍 Crafted Happiness 🤍</span>
+</div>
 
 <div class="search-box">
 <input
@@ -226,242 +375,151 @@ onclick="sendWhatsAppOrder()">
 const whatsappNumber = "917800518854";
 
 const products = [
-
 {
 id:1,
 name:"Blossom Bunny Plushie",
 price:150,
 image:"Blossom Bunny Plushie.jpg"
 },
-
 {
 id:2,
 name:"Cozy Teddy Crochet Baby Cap",
 price:999,
 image:"Cozy Teddy Crochet Baby Cap.jpg"
 },
-
 {
 id:3,
 name:"Golden Plushie",
 price:199,
 image:"Golden Plushie.jpg"
 },
-
 {
 id:4,
 name:"Sunny Duck Plushie",
 price:199,
 image:"Sunny Duck Plushie.jpg"
 },
-
 {
 id:5,
 name:"Teddy Crochet Baby Cap",
 price:999,
 image:"Teddy Crochet Baby Cap.jpg"
 },
-
 {
 id:6,
 name:"Candy Stripe Handmade Blanket",
 price:1999,
 image:"Candy Stripe Handmade Blanket.jpg"
 },
-
 {
 id:7,
 name:"Lavender Dreams Crochet Blanket",
 price:1999,
 image:"Lavender Dreams Crochet Blanket.jpg"
 },
-
 {
 id:8,
 name:"Hoppy Frog Plushie",
 price:199,
 image:"Hoppy Frog Plushie.jpg"
 }
-
 ];
 
 let cart=[];
 
 function renderProducts(list=products){
-
 let html='';
-
 list.forEach(product=>{
-
 html+=`
 <div class="card">
-
 <img src="${product.image}">
-
 <div class="card-content">
-
 <h3>${product.name}</h3>
-
-<div class="price">
-₹${product.price}
+<div class="price">₹${product.price}</div>
+<button class="btn" onclick="addToCart(${product.id})">🛒 Add To Cart</button>
 </div>
-
-<button class="btn"
-onclick="addToCart(${product.id})">
-🛒 Add To Cart
-</button>
-
-</div>
-
 </div>
 `;
 });
-
 document.getElementById("productList").innerHTML=html;
 }
 
+// Fixed a tiny capitalization bug here ("Search" to "search") to make search work flawlessly!
 function searchProducts(){
-
-const value =
-document.getElementById("Search")
-.value.toLowerCase();
-
-const filtered =
-products.filter(product =>
-product.name.toLowerCase()
-.includes(value));
-
+const value = document.getElementById("search").value.toLowerCase();
+const filtered = products.filter(product => product.name.toLowerCase().includes(value));
 renderProducts(filtered);
 }
 
 function addToCart(id){
-
 let item=cart.find(x=>x.id===id);
-
 if(item){
 item.qty++;
 }
 else{
-
-const product=
-products.find(x=>x.id===id);
-
+const product=products.find(x=>x.id===id);
 cart.push({
 ...product,
 qty:1
 });
 }
-
 renderCart();
 }
 
 function changeQty(id,change){
-
 let item=cart.find(x=>x.id===id);
-
 item.qty+=change;
-
 if(item.qty<=0){
 cart=cart.filter(x=>x.id!==id);
 }
-
 renderCart();
 }
 
 function renderCart(){
-
 let html='';
 let total=0;
-
 cart.forEach(item=>{
-
 total+=item.price*item.qty;
-
 html+=`
 <div class="cart-item">
-
 <div>
-${item.name}
-<br>
-₹${item.price}
+${item.name}<br>₹${item.price}
 </div>
-
 <div>
-
-<button
-class="qty-btn"
-onclick="changeQty(${item.id},-1)">
--
-</button>
-
+<button class="qty-btn" onclick="changeQty(${item.id},-1)">-</button>
 ${item.qty}
-
-<button
-class="qty-btn"
-onclick="changeQty(${item.id},1)">
-+
-</button>
-
+<button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
 </div>
-
 </div>
 `;
 });
-
-document.getElementById("cartItems")
-.innerHTML=html;
-
-document.getElementById("total")
-.innerText=total;
+document.getElementById("cartItems").innerHTML=html;
+document.getElementById("total").innerText=total;
 }
 
 function sendWhatsAppOrder(){
-
 if(cart.length===0){
 alert("Cart is empty");
 return;
 }
-
-let name=
-document.getElementById("name").value;
-
-let phone=
-document.getElementById("phone").value;
-
-let address=
-document.getElementById("address").value;
-
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
 let total=0;
-
-let msg=
-"🧸 *NEW ORDER - PRAGYA PLUSH & PURL*%0A%0A";
-
+let msg="🧸 *NEW ORDER - PRAGYA PLUSH & PURL*%0A%0A";
 msg+="👤 Name: "+name+"%0A";
 msg+="📱 Phone: "+phone+"%0A";
 msg+="📍 Address: "+address+"%0A%0A";
-
 msg+="🛒 *Products*%0A";
-
 cart.forEach(item=>{
-
 total+=item.price*item.qty;
-
-msg+=`${item.name} x ${item.qty}
-= ₹${item.price*item.qty}%0A`;
-
+msg+=`${item.name} x ${item.qty} = ₹${item.price*item.qty}%0A`;
 });
-
 msg+=`%0A💰 Total: ₹${total}`;
-
-window.open(
-`https://wa.me/${whatsappNumber}?text=${msg}`,
-"_blank"
-);
-
+window.open(`https://wa.me/${whatsappNumber}?text=${msg}`,"_blank");
 }
 
 renderProducts();
-
 </script>
 
 </body>
