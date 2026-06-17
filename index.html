@@ -116,7 +116,6 @@ position: relative;
 width:100%;
 padding:18px 25px;
 border:none;
-border-radius:5px; /* Boxy modern styling options look great with heavy rounding elsewhere */
 border-radius: 40px; 
 font-size:17px;
 box-shadow: 0 8px 25px rgba(0,0,0,0.05);
@@ -245,11 +244,6 @@ padding:15px 0;
 border-bottom:1px solid #f5e6ed;
 }
 
-.cart-item font-name {
-  font-weight: 600;
-  color: #333;
-}
-
 .qty-btn{
 padding:6px 12px;
 margin:0 5px;
@@ -269,17 +263,18 @@ transition: all 0.2s;
 
 /* Shipping Indicator Box */
 .shipping-badge {
-  background: #f0f7ff;
-  border: 1px dashed #0076ff;
+  background: #ebf5ff;
+  border: 2px dashed #0076ff;
   color: #0056b3;
-  padding: 12px 18px;
-  border-radius: 12px;
-  margin: 15px 0;
-  font-size: 14px;
+  padding: 15px;
+  border-radius: 14px;
+  margin: 18px 0;
+  font-size: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 600;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 118, 255, 0.1);
 }
 
 .total-breakdown {
@@ -391,7 +386,6 @@ font-weight: 500;
   font-size: 24px;
 }
 
-/* Position mapping stays intact */
 .st-l1 { top: 5%; left: 2%; animation-delay: 0s; }
 .st-l2 { top: 18%; left: 3%; animation-delay: 1s; }
 .st-l3 { top: 32%; left: 2%; animation-delay: 2s; }
@@ -469,6 +463,7 @@ onkeyup="searchProducts()">
 
 <div id="cartItems"></div>
 
+<!-- Shipping feedback badge -->
 <div id="shippingBadge" class="shipping-badge" style="display: none;">
   <span id="shippingLocation">📍 Shipping to: --</span>
   <span id="shippingFeeLabel">₹0</span>
@@ -502,12 +497,13 @@ onkeyup="searchProducts()">
 
 <div class="input-group">
   <div>
-    <label style="font-weight:700; font-size:14px;">Pincode (Calculates Shipping)</label>
-    <input type="text" id="pincode" maxlength="6" placeholder="📍 e.g. 110001" oninput="calculateShipping()">
+    <label style="font-weight:700; font-size:14px;">Pincode (6-Digits)</label>
+    <input type="text" id="pincode" maxlength="6" placeholder="📍 Type 6-digit pin code..." oninput="calculateShipping()">
+    <span id="pinWarning" style="color:#d32f2f; font-size:12px; font-weight:700; display:block; margin-top:4px;">⚠️ Please enter complete 6 digits</span>
   </div>
   <div>
     <label style="font-weight:700; font-size:14px;">City / State Info</label>
-    <input type="text" id="cityStateDisplay" placeholder="Automatically detected..." readonly style="background:#f0f0f0; color:#666;">
+    <input type="text" id="cityStateDisplay" placeholder="Waiting for valid pincode..." readonly style="background:#f0f0f0; color:#666;">
   </div>
 </div>
 
@@ -597,25 +593,31 @@ function calculateShipping() {
   const badge = document.getElementById("shippingBadge");
   const locLabel = document.getElementById("shippingLocation");
   const feeLabel = document.getElementById("shippingFeeLabel");
+  const pinWarning = document.getElementById("pinWarning");
 
+  // If the field is modified but not yet 6 digits
   if (pincode.length < 6) {
     deliveryFee = 0;
     detectedZone = "";
     cityStateInput.value = "";
     badge.style.display = "none";
+    pinWarning.style.display = "block";
     updateTotalOnly();
     return;
   }
 
-  // First digit of Indian PIN denotes the region
+  // Hide warning once 6 digits are hit
+  pinWarning.style.display = "none";
+
+  // First digit mapping for regional domestic shipping zones
   const regionDigit = pincode.charAt(0);
   
   if (regionDigit === '1') {
     detectedZone = "Delhi, Haryana, Punjab & North Region";
-    deliveryFee = 60; // Local / Tier 1
+    deliveryFee = 60;
   } else if (regionDigit === '2') {
     detectedZone = "Uttar Pradesh & Uttarakhand Zone";
-    deliveryFee = 50; // Close proximity base 
+    deliveryFee = 50;
   } else if (regionDigit === '3') {
     detectedZone = "Rajasthan & Gujarat Region";
     deliveryFee = 80;
@@ -624,10 +626,10 @@ function calculateShipping() {
     deliveryFee = 90;
   } else if (regionDigit === '5' || regionDigit === '6') {
     detectedZone = "South India (KA, TN, KL, AP, TS)";
-    deliveryFee = 120; // Long distance tier
+    deliveryFee = 120;
   } else if (regionDigit === '7') {
     detectedZone = "WB, Odisha & North East States";
-    deliveryFee = 140; // Rural/Hilly/Long haul
+    deliveryFee = 140;
   } else if (regionDigit === '8') {
     detectedZone = "Bihar & Jharkhand Region";
     deliveryFee = 90;
@@ -670,16 +672,14 @@ updateTotalOnly();
 function updateTotalOnly() {
   let subtotal = parseInt(document.getElementById("subtotal").innerText) || 0;
   
-  // Free delivery logic safeguard if cart is empty
-  let currentDelivery = cart.length === 0 ? 0 : deliveryFee;
-  
-  document.getElementById("deliveryCharge").innerText = currentDelivery;
-  document.getElementById("total").innerText = subtotal + currentDelivery;
+  // Update UI values instantly
+  document.getElementById("deliveryCharge").innerText = deliveryFee;
+  document.getElementById("total").innerText = subtotal + deliveryFee;
 }
 
 function sendWhatsAppOrder(){
 if(cart.length===0){
-alert("Your cart is empty!");
+alert("Your cart is empty! Add an item first.");
 return;
 }
 
@@ -689,7 +689,7 @@ let pincode=document.getElementById("pincode").value.trim();
 let address=document.getElementById("address").value.trim();
 
 if(!name || !phone || !pincode || !address){
-alert("Please perfectly fill out Name, Phone, Pincode, and Address fields!");
+alert("Please complete Name, Phone, Pincode, and Address fields!");
 return;
 }
 
@@ -716,7 +716,7 @@ msg += `• ${item.name} (x${item.qty}) = ₹${itemCost}\n`;
 msg += `\n💵 *Items Subtotal:* ₹${subtotal}`;
 msg += `\n🚚 *Delivery Charges:* ₹${deliveryFee}`;
 msg += `\n💰 *Grand Total Amount:* ₹${subtotal + deliveryFee}`;
-msg += `\n\n Please confirm my handmade order! 💕`;
+msg += `\n\nPlease confirm my handmade order! 💕`;
 
 let finalLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
 window.open(finalLink, "_blank");
