@@ -7,535 +7,374 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Quicksand', 'Segoe UI', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Quicksand', 'Segoe UI', sans-serif;
 }
 
 body{
-background: linear-gradient(135deg, #ffeef8 0%, #f0fff4 50%, #e6f9ff 100%);
-min-height:100vh;
-position: relative;
-overflow-x: hidden;
-color: #4a4a4a;
+    background-color: #fcf8f6; /* Soft premium cream tone like Hookok */
+    min-height:100vh;
+    color: #4a4a4a;
 }
-
-/* Luxury Scalloped Side Borders */
-body::before, body::after {
-  content: "•••••••••••••••••••••••••••••••••••••••••••••••••";
-  position: fixed;
-  top: 0;
-  width: 24px;
-  height: 100%;
-  word-wrap: break-word;
-  writing-mode: vertical-rl;
-  color: #ffb3d9;
-  font-size: 24px;
-  opacity: 0.3;
-  z-index: 0;
-  pointer-events: none;
-  letter-spacing: 4px;
-}
-body::before { left: 8px; }
-body::after { right: 8px; }
 
 header{
-background: linear-gradient(135deg, #ff4da6 0%, #ff758c 100%);
-color:white;
-text-align:center;
-padding:40px 20px;
-box-shadow: 0 10px 30px rgba(255, 77, 166, 0.25);
-position: relative;
-z-index: 2;
-border-bottom-left-radius: 30px;
-border-bottom-right-radius: 30px;
+    background: #ffffff;
+    text-align:center;
+    padding:40px 20px;
+    border-bottom: 1px solid #f0e6e2;
 }
 
 header h1{
-font-size:2.8rem;
-font-weight: 800;
-text-shadow: 0 4px 8px rgba(0,0,0,0.1);
-letter-spacing: -1px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    letter-spacing: -0.5px;
 }
 
 .tagline{
-margin-top:12px;
-font-size:1.1rem;
-opacity: 0.95;
-font-weight: 500;
-background: rgba(255, 255, 255, 0.2);
-display: inline-block;
-padding: 6px 18px;
-border-radius: 20px;
-backdrop-filter: blur(5px);
+    margin-top:10px;
+    font-size:1rem;
+    color: #888;
+    font-weight: 500;
 }
 
 .container{
-width:95%;
-max-width:1200px;
-margin:auto;
-padding:30px 15px;
-position: relative;
-z-index: 2;
-}
-
-/* Crafted Happiness Ribbon Sticker */
-.ribbon-tag {
-  text-align: center;
-  margin: 15px auto 5px auto;
-}
-.ribbon-tag span {
-  background: white;
-  color: #ff4da6;
-  padding: 8px 24px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  box-shadow: 0 8px 20px rgba(255, 77, 166, 0.15);
-  border: 2px dashed #ff85c2;
-  display: inline-block;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+    padding:30px 15px;
 }
 
 .search-box{
-margin:30px auto;
-max-width:600px;
-position: relative;
+    margin:20px auto 40px auto;
+    max-width:500px;
 }
 
 .search-box input{
-width:100%;
-padding:18px 25px;
-border:none;
-border-radius: 40px; 
-font-size:17px;
-box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-outline: none;
-border: 2px solid #ffe6f0;
-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-background: rgba(255, 255, 255, 0.9);
-backdrop-filter: blur(10px);
+    width:100%;
+    padding:14px 20px;
+    border-radius: 8px; 
+    font-size:15px;
+    outline: none;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    background: #fff;
 }
 
 .search-box input:focus {
-  border-color: #ff4da6;
-  box-shadow: 0 10px 30px rgba(255, 77, 166, 0.2);
-  transform: translateY(-2px);
+    border-color: #ff758c;
+    box-shadow: 0 0 10px rgba(255, 117, 140, 0.1);
 }
 
+/* --- HOOKOK STYLE GRID --- */
 .products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-gap:25px;
-margin-top:30px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top:30px;
 }
 
 .card{
-background: rgba(255, 255, 255, 0.85);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.6);
-border-radius:24px;
-overflow:hidden;
-box-shadow: 0 12px 35px rgba(0,0,0,0.06);
-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-display: flex;
-flex-direction: column;
+    background: #ffffff;
+    border-radius: 0px; /* Clean rectangular cut like Hookok */
+    overflow:hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover{
-transform: translateY(-10px) scale(1.02);
-box-shadow: 0 20px 40px rgba(255, 77, 166, 0.15);
-border-color: rgba(255, 77, 166, 0.3);
+    transform: translateY(-5px);
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background-color: #f9f9f9;
 }
 
 .card img{
-width:100%;
-height:250px;
-object-fit:cover;
-transition: transform 0.6s ease;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 0.4s ease;
 }
 
 .card:hover img {
-  transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .card-content{
-padding:22px;
-text-align:center;
-display: flex;
-flex-direction: column;
-flex-grow: 1;
-justify-content: space-between;
+    padding: 15px 5px;
+    text-align: left; /* Left align like professional craft blogs */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .card h3{
-margin-bottom:12px;
-color:#333;
-font-size: 1.25rem;
-font-weight: 700;
-transition: color 0.3s;
-}
-
-.card:hover h3 {
-  color: #ff4da6;
+    margin-bottom: 6px;
+    color: #444;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
 .price{
-font-size:24px;
-font-weight:800;
-color:#2e7d32;
-margin-bottom:15px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff758c;
+    margin-bottom: 12px;
 }
 
 .btn{
-background: linear-gradient(135deg, #ff4da6 0%, #ff6b8b 100%);
-color:white;
-border:none;
-padding:14px;
-width:100%;
-border-radius:15px;
-cursor:pointer;
-font-size:16px;
-font-weight: 700;
-box-shadow: 0 6px 15px rgba(255, 77, 166, 0.3);
-transition: all 0.3s ease;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s ease;
 }
 
 .btn:hover{
-background: linear-gradient(135deg, #e60073 0%, #ff4da6 100%);
-box-shadow: 0 8px 25px rgba(255, 77, 166, 0.45);
-transform: translateY(-2px);
+    background: #ff758c;
 }
 
+/* --- CART & FORM SECTION --- */
 .cart {
-margin-top: 40px;
-background: rgba(255, 255, 255, 0.9);
-backdrop-filter: blur(15px);
-padding: 30px;
-border-radius: 28px;
-box-shadow: 0 15px 45px rgba(0,0,0,0.08);
-border: 2px solid #ffe6f0;
+    margin-top: 60px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #eee;
 }
 
 .cart h2{
-color:#ff4da6;
-margin-bottom:20px;
-font-size: 1.8rem;
-font-weight: 800;
-display: flex;
-align-items: center;
-gap: 10px;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
 }
 
 .cart-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 0;
-border-bottom:1px solid #f5e6ed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f5f5f5;
 }
 
 .qty-btn{
-padding:6px 12px;
-margin:0 5px;
-background:#ffe6f0;
-color: #ff4da6;
-border:none;
-border-radius:8px;
-cursor:pointer;
-font-weight: 700;
-transition: all 0.2s;
+    padding: 4px 10px;
+    margin: 0 3px;
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
 }
 
 .qty-btn:hover {
-  background: #ff4da6;
-  color: white;
+    background: #ff758c;
+    color: white;
 }
 
-/* Shipping Indicator Box */
 .shipping-badge {
-  background: #ebf5ff;
-  border: 2px dashed #0076ff;
-  color: #0056b3;
-  padding: 15px;
-  border-radius: 14px;
-  margin: 18px 0;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 118, 255, 0.1);
+    background: #fff5f6;
+    border: 1px dashed #ff758c;
+    color: #ff758c;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
 }
 
 .total-breakdown {
-  border-top: 2px solid #ffe6f0;
-  padding-top: 15px;
-  margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
 }
 
 .breakdown-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #666;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #666;
 }
 
 .total{
-font-size:28px;
-font-weight:800;
-color:#2e7d32;
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-top: 10px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 .input-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 @media (max-width: 600px) {
-  .input-group { grid-template-columns: 1fr; }
+    .input-group { grid-template-columns: 1fr; }
+}
+
+label {
+    font-weight: 700; 
+    font-size: 13px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
 }
 
 input, textarea {
-width:100%;
-padding:14px;
-margin-top:5px;
-border: 2px solid #eee;
-background: #fafafa;
-border-radius:12px;
-outline: none;
-font-size: 15px;
-transition: all 0.3s;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
 }
 
 input:focus, textarea:focus {
-  border-color: #ff4da6;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(255, 77, 166, 0.1);
+    border-color: #ff758c;
 }
 
 .whatsapp{
-margin-top:20px;
-background: linear-gradient(135deg, #25D366 0%, #1cbd55 100%);
-box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-padding: 16px;
-font-size: 18px;
+    margin-top: 25px;
+    background: #25D366;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 6px;
 }
 
 .whatsapp:hover {
-  background: linear-gradient(135deg, #20ba5a 0%, #199447 100%);
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+    background: #20ba5a;
 }
 
-footer{
-text-align:center;
-padding:30px;
-margin-top:50px;
-color:#888;
-position: relative;
-z-index: 2;
-font-weight: 500;
-}
-
-/* --- STICKERS BACKGROUND STYLING --- */
-.sticker-container {
-  position: fixed;
-  top: 120px;
-  width: 100%;
-  height: calc(100vh - 120px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.sticker {
-  position: absolute;
-  background: #fff;
-  padding: 8px 14px;
-  border-radius: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.06), inset 0 0 0 2px #fff;
-  border: 2px solid #ffccd5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 13px;
-  color: #ff4da6;
-  user-select: none;
-  animation: gentleFloat 6s ease-in-out infinite alternate;
-}
-
-.sticker.emoji-only {
-  padding: 10px;
-  border-radius: 50%;
-  font-size: 24px;
-}
-
-.st-l1 { top: 5%; left: 2%; animation-delay: 0s; }
-.st-l2 { top: 18%; left: 3%; animation-delay: 1s; }
-.st-l3 { top: 32%; left: 2%; animation-delay: 2s; }
-.st-l4 { top: 45%; left: 4%; animation-delay: 0.5s; }
-.st-l5 { top: 58%; left: 1.5%; animation-delay: 1.5s; }
-.st-l6 { top: 72%; left: 3%; animation-delay: 2.5s; }
-.st-l7 { top: 85%; left: 2%; animation-delay: 0.8s; }
-
-.st-r1 { top: 6%; right: 2%; animation-delay: 0.5s; }
-.st-r2 { top: 18%; right: 4%; animation-delay: 1.5s; }
-.st-r3 { top: 30%; right: 2%; animation-delay: 2.5s; }
-.st-r4 { top: 45%; right: 3%; animation-delay: 1s; }
-.st-r5 { top: 58%; right: 2%; animation-delay: 2s; }
-.st-r6 { top: 72%; right: 4%; animation-delay: 0.2s; }
-.st-r7 { top: 86%; right: 2%; animation-delay: 1.8s; }
-
-@keyframes gentleFloat {
-  0% { transform: translateY(0px) rotate(-4deg); }
-  100% { transform: translateY(-15px) rotate(5deg); }
-}
-
-@media (max-width: 1300px) {
-  .sticker-container, body::before, body::after {
-    display: none;
-  }
+footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 60px;
+    color: #bbb;
+    font-size: 13px;
+    border-top: 1px solid #f0e6e2;
 }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="sticker-container">
-  <div class="sticker emoji-only st-l1">🧶</div>
-  <div class="sticker st-l2">HANDMADE WITH LOVE</div>
-  <div class="sticker emoji-only st-l3">🐰</div>
-  <div class="sticker emoji-only st-l4">🐾</div>
-  <div class="sticker emoji-only st-l5">🪡</div>
-  <div class="sticker st-l6">CUTE STUFF</div>
-  <div class="sticker emoji-only st-l7">🤍</div>
-
-  <div class="sticker emoji-only st-r1">🌸</div>
-  <div class="sticker emoji-only st-r2">🦆</div>
-  <div class="sticker st-r3">PURL & JOY</div>
-  <div class="sticker emoji-only st-r4">🐸</div>
-  <div class="sticker st-r5">YARN LIFE</div>
-  <div class="sticker emoji-only st-r6">🧸</div>
-  <div class="sticker st-r7">MADE WITH LOVE</div>
-</div>
-
 <header>
-<h1>🧸 Pragya Plush & Purl 🎀</h1>
-<p class="tagline">
-🐰 Handmade Plushies • 🐻 Crochet Toys • 🌸 Cute Gifts
-</p>
+    <h1>Pragya Plush & Purl</h1>
+    <p class="tagline">Handmade Crochet Flowers, Plushies & Cute Crafts</p>
 </header>
 
 <div class="container">
 
-<div class="ribbon-tag">
-  <span>🤍 Crafted Happiness 🤍</span>
-</div>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search unique crochet designs..." onkeyup="searchProducts()">
+    </div>
 
-<div class="search-box">
-<input
-type="text"
-id="search"
-placeholder="🔍 What cute item are you looking for today?..."
-onkeyup="searchProducts()">
-</div>
+    <div class="products" id="productList"></div>
 
-<div class="products" id="productList"></div>
+    <div class="cart">
+        <h2>Your Shopping Bag</h2>
 
-<div class="cart">
-<h2>🛒 Your Cart</h2>
+        <div id="cartItems"></div>
 
-<div id="cartItems"></div>
+        <div id="shippingBadge" class="shipping-badge" style="display: none;">
+            <span id="shippingLocation">📍 Region: --</span>
+            <span id="shippingFeeLabel">₹0</span>
+        </div>
 
-<!-- Shipping feedback badge -->
-<div id="shippingBadge" class="shipping-badge" style="display: none;">
-  <span id="shippingLocation">📍 Shipping to: --</span>
-  <span id="shippingFeeLabel">₹0</span>
-</div>
+        <div class="total-breakdown">
+            <div class="breakdown-row">
+                <span>Items Subtotal:</span>
+                <span>₹<span id="subtotal">0</span></span>
+            </div>
+            <div class="breakdown-row">
+                <span>Delivery Charges:</span>
+                <span>₹<span id="deliveryCharge">0</span></span>
+            </div>
+            <div class="total">
+                <span>Total Amount:</span>
+                <span>₹<span id="total">0</span></span>
+            </div>
+        </div>
 
-<div class="total-breakdown">
-  <div class="breakdown-row">
-    <span>Items Subtotal:</span>
-    <span>₹<span id="subtotal">0</span></span>
-  </div>
-  <div class="breakdown-row">
-    <span>Estimated Delivery:</span>
-    <span>₹<span id="deliveryCharge">0</span></span>
-  </div>
-  <div class="total">
-    <span>Grand Total:</span>
-    <span>₹<span id="total">0</span></span>
-  </div>
-</div>
+        <div class="input-group">
+            <div>
+                <label>Your Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input type="text" id="phone" placeholder="10-digit mobile number">
+            </div>
+        </div>
 
-<div class="input-group">
-  <div>
-    <label style="font-weight:700; font-size:14px;">Your Name</label>
-    <input type="text" id="name" placeholder="👤 e.g. Pragya Sharma">
-  </div>
-  <div>
-    <label style="font-weight:700; font-size:14px;">Phone Number</label>
-    <input type="text" id="phone" placeholder="📱 10-digit mobile">
-  </div>
-</div>
+        <div class="input-group">
+            <div>
+                <label>Pincode (6-Digits)</label>
+                <input type="text" id="pincode" maxlength="6" placeholder="e.g. 110001" oninput="calculateShipping()">
+                <span id="pinWarning" style="color:#ff758c; font-size:12px; font-weight:700; display:block; margin-top:4px;">⚠️ Enter a valid 6-digit Pincode to count shipping charges</span>
+            </div>
+            <div>
+                <label>City / State Info</label>
+                <input type="text" id="cityStateDisplay" placeholder="Autodetected via pincode..." readonly style="background:#f9f9f9; color:#777;">
+            </div>
+        </div>
 
-<div class="input-group">
-  <div>
-    <label style="font-weight:700; font-size:14px;">Pincode (6-Digits)</label>
-    <input type="text" id="pincode" maxlength="6" placeholder="📍 Type 6-digit pin code..." oninput="calculateShipping()">
-    <span id="pinWarning" style="color:#d32f2f; font-size:12px; font-weight:700; display:block; margin-top:4px;">⚠️ Please enter complete 6 digits</span>
-  </div>
-  <div>
-    <label style="font-weight:700; font-size:14px;">City / State Info</label>
-    <input type="text" id="cityStateDisplay" placeholder="Waiting for valid pincode..." readonly style="background:#f0f0f0; color:#666;">
-  </div>
-</div>
+        <div style="margin-top:15px;">
+            <label>Full Delivery Address</label>
+            <textarea id="address" rows="3" placeholder="House/Flat No, Building, Street, Landmark..."></textarea>
+        </div>
 
-<div style="margin-top:15px;">
-  <label style="font-weight:700; font-size:14px;">Full Delivery Address</label>
-  <textarea id="address" rows="3" placeholder="🏠 Flat No, Street Name, Landmark..."></textarea>
-</div>
-
-<button class="btn whatsapp" onclick="sendWhatsAppOrder()">
-📲 Secure Order via WhatsApp
-</button>
-
-</div>
+        <button class="btn whatsapp" onclick="sendWhatsAppOrder()">
+            Place Order via WhatsApp
+        </button>
+    </div>
 
 </div>
 
 <footer>
-💖 Thank you for supporting handmade dreams at Pragya Plush & Purl 💖
+    &copy; 2026 Pragya Plush & Purl. Inspired by beautiful handmade loops.
 </footer>
 
 <script>
 const whatsappNumber = "917800518854";
 
 const products = [
-{ id:1, name:"Blossom Bunny Plushie", price:150, image:"Blossom Bunny Plushie.jpg" },
-{ id:2, name:"Cozy Teddy Crochet Baby Cap", price:999, image:"Cozy Teddy Crochet Baby Cap.jpg" },
-{ id:3, name:"Golden Plushie", price:199, image:"Golden Plushie.jpg" },
-{ id:4, name:"Sunny Duck Plushie", price:199, image:"Sunny Duck Plushie.jpg" },
-{ id:5, name:"Teddy Crochet Baby Cap", price:999, image:"Teddy Crochet Baby Cap.jpg" },
-{ id:6, name:"Candy Stripe Handmade Blanket", price:1999, image:"Candy Stripe Handmade Blanket.jpg" },
-{ id:7, name:"Lavender Dreams Crochet Blanket", price:1999, image:"Lavender Dreams Crochet Blanket.jpg" },
-{ id:8, name:"Hoppy Frog Plushie", price:199, image:"Hoppy Frog Plushie.jpg" }
+    { id:1, name:"Blossom Bunny Plushie", price:150, image:"Blossom Bunny Plushie.jpg" },
+    { id:2, name:"Cozy Teddy Crochet Baby Cap", price:999, image:"Cozy Teddy Crochet Baby Cap.jpg" },
+    { id:3, name:"Golden Plushie", price:199, image:"Golden Plushie.jpg" },
+    { id:4, name:"Sunny Duck Plushie", price:199, image:"Sunny Duck Plushie.jpg" },
+    { id:5, name:"Teddy Crochet Baby Cap", price:999, image:"Teddy Crochet Baby Cap.jpg" },
+    { id:6, name:"Candy Stripe Handmade Blanket", price:1999, image:"Candy Stripe Handmade Blanket.jpg" },
+    { id:7, name:"Lavender Dreams Crochet Blanket", price:1999, image:"Lavender Dreams Crochet Blanket.jpg" },
+    { id:8, name:"Hoppy Frog Plushie", price:199, image:"Hoppy Frog Plushie.jpg" }
 ];
 
 let cart = [];
@@ -543,183 +382,178 @@ let deliveryFee = 0;
 let detectedZone = "";
 
 function renderProducts(list=products){
-let html='';
-list.forEach(product=>{
-html+=`
-<div class="card">
-<img src="${product.image}">
-<div class="card-content">
-<h3>${product.name}</h3>
-<div class="price">₹${product.price}</div>
-<button class="btn" onclick="addToCart(${product.id})">🛒 Add To Cart</button>
-</div>
-</div>
-`;
-});
-document.getElementById("productList").innerHTML=html;
+    let html='';
+    list.forEach(product=>{
+        html+=`
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="${product.image}">
+            </div>
+            <div class="card-content">
+                <h3>${product.name}</h3>
+                <div class="price">₹${product.price}</div>
+                <button class="btn" onclick="addToCart(${product.id})">Add To Bag</button>
+            </div>
+        </div>
+        `;
+    });
+    document.getElementById("productList").innerHTML=html;
 }
 
 function searchProducts(){
-const value = document.getElementById("search").value.toLowerCase();
-const filtered = products.filter(product => product.name.toLowerCase().includes(value));
-renderProducts(filtered);
+    const value = document.getElementById("search").value.toLowerCase();
+    const filtered = products.filter(product => product.name.toLowerCase().includes(value));
+    renderProducts(filtered);
 }
 
 function addToCart(id){
-let item=cart.find(x=>x.id===id);
-if(item){
-item.qty++;
-}
-else{
-const product=products.find(x=>x.id===id);
-cart.push({...product, qty:1});
-}
-renderCart();
+    let item=cart.find(x=>x.id===id);
+    if(item){
+        item.qty++;
+    } else {
+        const product=products.find(x=>x.id===id);
+        cart.push({...product, qty:1});
+    }
+    renderCart();
 }
 
 function changeQty(id,change){
-let item=cart.find(x=>x.id===id);
-item.qty+=change;
-if(item.qty<=0){
-cart=cart.filter(x=>x.id!==id);
-}
-renderCart();
+    let item=cart.find(x=>x.id===id);
+    item.qty+=change;
+    if(item.qty<=0){
+        cart=cart.filter(x=>x.id!==id);
+    }
+    renderCart();
 }
 
-/* --- PINCODE SHIPPING SYSTEM --- */
+/* --- AUTOMATED PINCODE SHIPPING CALCULATION --- */
 function calculateShipping() {
-  const pincode = document.getElementById("pincode").value.trim();
-  const cityStateInput = document.getElementById("cityStateDisplay");
-  const badge = document.getElementById("shippingBadge");
-  const locLabel = document.getElementById("shippingLocation");
-  const feeLabel = document.getElementById("shippingFeeLabel");
-  const pinWarning = document.getElementById("pinWarning");
+    const pincode = document.getElementById("pincode").value.trim();
+    const cityStateInput = document.getElementById("cityStateDisplay");
+    const badge = document.getElementById("shippingBadge");
+    const locLabel = document.getElementById("shippingLocation");
+    const feeLabel = document.getElementById("shippingFeeLabel");
+    const pinWarning = document.getElementById("pinWarning");
 
-  // If the field is modified but not yet 6 digits
-  if (pincode.length < 6) {
-    deliveryFee = 0;
-    detectedZone = "";
-    cityStateInput.value = "";
-    badge.style.display = "none";
-    pinWarning.style.display = "block";
+    if (pincode.length < 6) {
+        deliveryFee = 0;
+        detectedZone = "";
+        cityStateInput.value = "";
+        badge.style.display = "none";
+        pinWarning.style.display = "block";
+        updateTotalOnly();
+        return;
+    }
+
+    pinWarning.style.display = "none";
+    const regionDigit = pincode.charAt(0);
+    
+    if (regionDigit === '1') {
+        detectedZone = "Delhi, Haryana, Punjab & North Region";
+        deliveryFee = 60;
+    } else if (regionDigit === '2') {
+        detectedZone = "Uttar Pradesh & Uttarakhand Zone";
+        deliveryFee = 50;
+    } else if (regionDigit === '3') {
+        detectedZone = "Rajasthan & Gujarat Region";
+        deliveryFee = 80;
+    } else if (regionDigit === '4') {
+        detectedZone = "Maharashtra, MP & Chhattisgarh Zone";
+        deliveryFee = 90;
+    } else if (regionDigit === '5' || regionDigit === '6') {
+        detectedZone = "South India (KA, TN, KL, AP, TS)";
+        deliveryFee = 120;
+    } else if (regionDigit === '7') {
+        detectedZone = "WB, Odisha & North East States";
+        deliveryFee = 140;
+    } else if (regionDigit === '8') {
+        detectedZone = "Bihar & Jharkhand Region";
+        deliveryFee = 90;
+    } else {
+        detectedZone = "Standard Domestic Cargo";
+        deliveryFee = 100;
+    }
+
+    cityStateInput.value = detectedZone;
+    locLabel.innerText = `📍 Region: ${detectedZone}`;
+    feeLabel.innerText = `₹${deliveryFee}`;
+    badge.style.display = "flex";
+
     updateTotalOnly();
-    return;
-  }
-
-  // Hide warning once 6 digits are hit
-  pinWarning.style.display = "none";
-
-  // First digit mapping for regional domestic shipping zones
-  const regionDigit = pincode.charAt(0);
-  
-  if (regionDigit === '1') {
-    detectedZone = "Delhi, Haryana, Punjab & North Region";
-    deliveryFee = 60;
-  } else if (regionDigit === '2') {
-    detectedZone = "Uttar Pradesh & Uttarakhand Zone";
-    deliveryFee = 50;
-  } else if (regionDigit === '3') {
-    detectedZone = "Rajasthan & Gujarat Region";
-    deliveryFee = 80;
-  } else if (regionDigit === '4') {
-    detectedZone = "Maharashtra, MP & Chhattisgarh Zone";
-    deliveryFee = 90;
-  } else if (regionDigit === '5' || regionDigit === '6') {
-    detectedZone = "South India (KA, TN, KL, AP, TS)";
-    deliveryFee = 120;
-  } else if (regionDigit === '7') {
-    detectedZone = "WB, Odisha & North East States";
-    deliveryFee = 140;
-  } else if (regionDigit === '8') {
-    detectedZone = "Bihar & Jharkhand Region";
-    deliveryFee = 90;
-  } else {
-    detectedZone = "Standard Domestic Cargo";
-    deliveryFee = 100;
-  }
-
-  cityStateInput.value = detectedZone;
-  locLabel.innerText = `📍 Region: ${detectedZone}`;
-  feeLabel.innerText = `₹${deliveryFee}`;
-  badge.style.display = "flex";
-
-  updateTotalOnly();
 }
 
 function renderCart(){
-let html='';
-let subtotal=0;
-cart.forEach(item=>{
-subtotal+=item.price*item.qty;
-html+=`
-<div class="cart-item">
-<div>
-<strong>${item.name}</strong><br><span style="color:#666; font-size:14px;">₹${item.price}</span>
-</div>
-<div>
-<button class="qty-btn" onclick="changeQty(${item.id},-1)">-</button>
-<span style="font-weight:700; margin:0 4px;">${item.qty}</span>
-<button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
-</div>
-</div>
-`;
-});
-document.getElementById("cartItems").innerHTML=html;
-document.getElementById("subtotal").innerText=subtotal;
-updateTotalOnly();
+    let html='';
+    let subtotal=0;
+    cart.forEach(item=>{
+        subtotal+=item.price*item.qty;
+        html+=`
+        <div class="cart-item">
+            <div>
+                <strong>${item.name}</strong><br><span style="color:#888; font-size:13px;">₹${item.price}</span>
+            </div>
+            <div>
+                <button class="qty-btn" onclick="changeQty(${item.id},-1)">-</button>
+                <span style="font-weight:700; margin:0 4px;">${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+            </div>
+        </div>
+        `;
+    });
+    document.getElementById("cartItems").innerHTML=html;
+    document.getElementById("subtotal").innerText=subtotal;
+    updateTotalOnly();
 }
 
 function updateTotalOnly() {
-  let subtotal = parseInt(document.getElementById("subtotal").innerText) || 0;
-  
-  // Update UI values instantly
-  document.getElementById("deliveryCharge").innerText = deliveryFee;
-  document.getElementById("total").innerText = subtotal + deliveryFee;
+    let subtotal = parseInt(document.getElementById("subtotal").innerText) || 0;
+    document.getElementById("deliveryCharge").innerText = deliveryFee;
+    document.getElementById("total").innerText = subtotal + deliveryFee;
 }
 
 function sendWhatsAppOrder(){
-if(cart.length===0){
-alert("Your cart is empty! Add an item first.");
-return;
-}
+    if(cart.length===0){
+        alert("Your cart is empty! Add an item first.");
+        return;
+    }
 
-let name=document.getElementById("name").value.trim();
-let phone=document.getElementById("phone").value.trim();
-let pincode=document.getElementById("pincode").value.trim();
-let address=document.getElementById("address").value.trim();
+    let name=document.getElementById("name").value.trim();
+    let phone=document.getElementById("phone").value.trim();
+    let pincode=document.getElementById("pincode").value.trim();
+    let address=document.getElementById("address").value.trim();
 
-if(!name || !phone || !pincode || !address){
-alert("Please complete Name, Phone, Pincode, and Address fields!");
-return;
-}
+    if(!name || !phone || !pincode || !address){
+        alert("Please complete Name, Phone, Pincode, and Address fields!");
+        return;
+    }
 
-if(pincode.length !== 6) {
-  alert("Please enter a valid 6-digit Pincode!");
-  return;
-}
+    if(pincode.length !== 6) {
+        alert("Please enter a valid 6-digit Pincode!");
+        return;
+    }
 
-let subtotal=0;
-let msg = "✨ *NEW PLUSH & PURL ORDER* ✨\n\n";
-msg += "👤 *Name:* " + name + "\n";
-msg += "📱 *Phone:* " + phone + "\n";
-msg += "📍 *Region Zone:* " + (detectedZone || "Checked via Pin") + "\n";
-msg += "📮 *Pincode:* " + pincode + "\n";
-msg += "🏠 *Address:* " + address + "\n\n";
-msg += "📦 *Ordered Items:* \n";
+    let subtotal=0;
+    let msg = "✨ *NEW ORDER - PRAGYA PLUSH & PURL* ✨\n\n";
+    msg += "👤 *Customer Name:* " + name + "\n";
+    msg += "📱 *Phone:* " + phone + "\n";
+    msg += "📍 *Region Zone:* " + (detectedZone || "Verified") + "\n";
+    msg += "📮 *Pincode:* " + pincode + "\n";
+    msg += "🏠 *Address:* " + address + "\n\n";
+    msg += "📦 *Items Ordered:* \n";
 
-cart.forEach(item=>{
-let itemCost = item.price * item.qty;
-subtotal += itemCost;
-msg += `• ${item.name} (x${item.qty}) = ₹${itemCost}\n`;
-});
+    cart.forEach(item=>{
+        let itemCost = item.price * item.qty;
+        subtotal += itemCost;
+        msg += `• ${item.name} (x${item.qty}) = ₹${itemCost}\n`;
+    });
 
-msg += `\n💵 *Items Subtotal:* ₹${subtotal}`;
-msg += `\n🚚 *Delivery Charges:* ₹${deliveryFee}`;
-msg += `\n💰 *Grand Total Amount:* ₹${subtotal + deliveryFee}`;
-msg += `\n\nPlease confirm my handmade order! 💕`;
+    msg += `\n💵 *Items Subtotal:* ₹${subtotal}`;
+    msg += `\n🚚 *Delivery Charges:* ₹${deliveryFee}`;
+    msg += `\n💰 *Grand Total:* ₹${subtotal + deliveryFee}`;
+    msg += `\n\nPlease accept and confirm my handmade order! 💕`;
 
-let finalLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-window.open(finalLink, "_blank");
+    let finalLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(finalLink, "_blank");
 }
 
 renderProducts();
