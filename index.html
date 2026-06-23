@@ -641,13 +641,6 @@
             border-top: 1px solid #FFD1DF;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.95; }
-            50% { opacity: 1; transform: scale(1.01); }
-            100% { opacity: 0.95; }
-        }
-
-        /* Responsive */
         @media (max-width: 1100px) {
             .product-grid { grid-template-columns: repeat(3, 1fr); }
             .video-grid { grid-template-columns: repeat(3, 1fr); }
@@ -691,20 +684,21 @@
         <div class="video-grid">
             <div class="video-card">
                 <span class="video-overlay-tag">Studio Reel 1</span>
-                <video controls muted autoplay loop>
-                    <source src="VID-20260618-WA0002.MP4" type="video/mp4">
+                <!-- playsinline जोड़ा गया है ताकि मोबाइल और गिटहब पेजों पर ऑटोप्ले काम करे -->
+                <video controls muted autoplay loop playsinline>
+                    <source src="VID-20260618-WA0002.mp4" type="video/mp4">
                 </video>
             </div>
             <div class="video-card">
                 <span class="video-overlay-tag">Studio Reel 2</span>
-                <video controls muted autoplay loop>
-                    <source src="VID-20260618-WA0003.MP4" type="video/mp4">
+                <video controls muted autoplay loop playsinline>
+                    <source src="VID-20260618-WA0003.mp4" type="video/mp4">
                 </video>
             </div>
             <div class="video-card">
                 <span class="video-overlay-tag">Studio Reel 3</span>
-                <video controls muted autoplay loop>
-                    <source src="VID-20260618-WA0004.MP4" type="video/mp4">
+                <video controls muted autoplay loop playsinline>
+                    <source src="VID-20260618-WA0004.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -722,9 +716,7 @@
 
     <!-- Products Space -->
     <div style="padding: 0 8%;">
-        <div class="product-grid" id="productGrid">
-            <!-- Loaded dynamically with sleek styling -->
-        </div>
+        <div class="product-grid" id="productGrid"></div>
     </div>
 
     <!-- High-Converting Course / Academy Block -->
