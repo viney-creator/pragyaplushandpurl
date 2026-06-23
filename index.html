@@ -1,706 +1,1076 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pragya Plush & Purl</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pragya Plush & Purl | Premium Luxury Crochet & Plushies</title>
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-pink: #FF4D88;
+            --header-pink: #FF2E73;
+            --soft-pink: #FFF0F5;
+            --bg-gradient-start: #FFF5F7;
+            --bg-gradient-end: #FFEBEF;
+            --dark-berry: #4A1525;
+            --gold-accent: #D4AF37;
+            --card-shadow: 0 12px 35px rgba(255, 77, 136, 0.08);
+            --hover-shadow: 0 20px 40px rgba(255, 77, 136, 0.18);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            
+            /* Typography Variables */
+            --font-display: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Quicksand', 'Segoe UI', sans-serif;
-}
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-body{
-    background-color: #fcf8f6; 
-    min-height:100vh;
-    color: #4a4a4a;
-    overflow-x: hidden;
-}
+        body {
+            font-family: var(--font-display);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--dark-berry);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            font-size: 19px; /* Garamond runs slightly small, adjusting default size */
+            letter-spacing: 0.5px;
+        }
 
-/* --- HEADER & NAVBAR --- */
-header{
-    background: #ffffff;
-    text-align:center;
-    padding:30px 20px;
-    border-bottom: 1px solid #f0e6e2;
-    position: relative;
-}
+        /* Premium Header */
+        header {
+            background: rgba(255, 46, 115, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 46, 115, 0.15);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
 
-header h1{
-    font-size: 2.3rem;
-    font-weight: 800;
-    color: #333;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.tagline{
-    margin-top:5px;
-    font-size:0.95rem;
-    color: #888;
-}
+        .brand {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            animation: pulse 3s infinite;
+        }
 
-/* Floating Action Icons (Cart & Wishlist) */
-.nav-actions {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 15px;
-    z-index: 100;
-}
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            font-family: var(--font-sans);
+        }
 
-.action-btn {
-    background: #ffffff;
-    border: 1px solid #e0d5d0;
-    padding: 12px 16px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 5px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-.action-btn:hover {
-    transform: translateY(-2px);
-    border-color: #ff758c;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: var(--transition);
+        }
 
-.badge {
-    background: #ff758c;
-    color: white;
-    font-size: 12px;
-    padding: 2px 7px;
-    border-radius: 10px;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-.container{
-    width:92%;
-    max-width:1200px;
-    margin:auto;
-    padding:30px 15px;
-}
+        .cart-btn-nav {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+        }
 
-.search-box{
-    margin: 20px auto 40px auto;
-    max-width: 500px;
-}
+        .cart-badge {
+            background-color: white;
+            color: var(--header-pink);
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 11px;
+        }
 
-.search-box input{
-    width:100%;
-    padding:14px 20px;
-    border-radius: 8px; 
-    font-size:15px;
-    outline: none;
-    border: 1px solid #ddd;
-    background: #fff;
-}
+        /* Hero / Video Showroom Section */
+        .hero-section {
+            padding: 60px 8% 40px 8%;
+            text-align: center;
+        }
 
-/* --- HOOKOK STYLE GRID WITH WISHLIST --- */
-.products{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 30px;
-}
+        .hero-title {
+            font-size: 52px;
+            color: var(--header-pink);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
 
-.card{
-    background: #ffffff;
-    border-radius: 0px; 
-    overflow:hidden;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+        .hero-subtitle {
+            font-size: 22px;
+            color: #7A4F5D;
+            margin-bottom: 45px;
+            font-style: italic;
+        }
 
-.card:hover{
-    transform: translateY(-5px);
-}
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
 
-.card-img-wrapper {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    position: relative;
-}
+        .video-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 77, 136, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
 
-.card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
 
-/* Wishlist Heart Button on Image */
-.wishlist-heart {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all 0.2s ease;
-    z-index: 10;
-}
+        .video-card video {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
 
-.wishlist-heart.active {
-    color: red;
-}
+        .video-overlay-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 46, 115, 0.9);
+            color: white;
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            font-family: var(--font-sans);
+        }
 
-.card-content{
-    padding: 15px 5px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
+        /* Luxe Filters */
+        .tabs-container {
+            text-align: center;
+            margin: 50px 8% 25px 8%;
+        }
 
-.card h3{
-    margin-bottom: 6px;
-    color: #444;
-    font-size: 1rem;
-    font-weight: 700;
-}
+        .tab-btn {
+            font-family: var(--font-sans);
+            background-color: white;
+            border: 2px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 12px 26px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 6px;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
 
-.price{
-    font-size: 16px;
-    font-weight: 700;
-    color: #ff758c;
-    margin-bottom: 12px;
-}
+        .tab-btn.active, .tab-btn:hover {
+            background: linear-gradient(135deg, var(--primary-pink), var(--header-pink));
+            color: white;
+            box-shadow: 0 6px 15px rgba(255, 77, 136, 0.3);
+            transform: translateY(-2px);
+        }
 
-.btn{
-    background: #333;
-    color: white;
-    border: none;
-    padding: 10px 14px;
-    width: 100%;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    transition: background 0.2s ease;
-}
+        /* Beautiful Products Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 20px 0;
+        }
 
-.btn:hover{
-    background: #ff758c;
-}
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 77, 136, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-/* --- SIDE DRAWER SYSTEM (CART & WISHLIST) --- */
-.drawer {
-    position: fixed;
-    top: 0;
-    right: -450px; /* Hidden by default */
-    width: 100%;
-    max-width: 440px;
-    height: 100vh;
-    background: #ffffff;
-    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-    z-index: 1000;
-    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    overflow-y: auto;
-}
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
 
-.drawer.open {
-    right: 0; /* Slide in */
-}
+        .product-image {
+            width: 100%;
+            height: 260px;
+            border-radius: 18px;
+            background-color: #FFF3F6;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
 
-.drawer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--header-pink);
+            padding: 4px 12px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-transform: uppercase;
+            font-family: var(--font-sans);
+            letter-spacing: 0.5px;
+        }
 
-.drawer-header h2 {
-    font-size: 1.4rem;
-    color: #333;
-}
+        .product-name {
+            font-size: 23px;
+            font-weight: 600;
+            color: var(--dark-berry);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
 
-.close-drawer {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #888;
-}
+        .product-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 10px;
+        }
 
-/* Backdrop Overlay */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    display: none;
-}
+        .product-price {
+            font-size: 26px;
+            color: var(--header-pink);
+            font-weight: 700;
+        }
 
-.overlay.show {
-    display: block;
-}
+        .add-to-cart-btn {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, #FF6699, #FF2E73);
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-/* Inside Drawer Styling */
-.cart-item, .wishlist-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f9f9f9;
-}
+        .add-to-cart-btn:hover {
+            box-shadow: 0 5px 15px rgba(255, 46, 115, 0.4);
+            transform: scale(1.03);
+        }
 
-.qty-btn{
-    padding: 2px 8px;
-    margin: 0 2px;
-    background: #f0f0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        /* Academy & Courses Section */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: var(--dark-berry);
+            margin: 80px 0 35px 0;
+            font-weight: 700;
+            position: relative;
+        }
 
-.shipping-badge {
-    background: #fff5f6;
-    border: 1px dashed #ff758c;
-    color: #ff758c;
-    padding: 10px;
-    border-radius: 6px;
-    margin: 15px 0;
-    font-size: 13px;
-    display: flex;
-    justify-content: space-between;
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-pink);
+            margin: 12px auto 0 auto;
+            border-radius: 2px;
+        }
 
-.total-breakdown {
-    border-top: 1px solid #eee;
-    padding-top: 12px;
-    margin-top: 12px;
-}
+        .featured-course-box {
+            background: linear-gradient(135deg, #FF2E73 0%, #FF6699 50%, #FF85A2 100%);
+            color: white;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 15px 35px rgba(255, 46, 115, 0.25);
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
 
-.breakdown-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-    font-size: 14px;
-    color: #666;
-}
+        .featured-course-box::before {
+            content: '🌸';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.08;
+            right: -30px;
+            bottom: -30px;
+        }
 
-.total {
-    font-size: 19px;
-    font-weight: 800;
-    color: #333;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
-}
+        .featured-course-box h3 {
+            font-size: 38px;
+            margin-top: 0;
+            font-weight: 700;
+        }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    outline: none;
-    font-size: 13px;
-    margin-top: 3px;
-}
+        .featured-course-box p {
+            font-size: 22px;
+            line-height: 1.5;
+        }
 
-.input-container {
-    margin-top: 12px;
-}
+        .featured-course-btn {
+            font-family: var(--font-sans);
+            background-color: white;
+            color: var(--header-pink);
+            border: none;
+            padding: 15px 40px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 35px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
 
-.whatsapp {
-    margin-top: 20px;
-    background: #25D366;
-}
+        .featured-course-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
 
-footer {
-    text-align: center;
-    padding: 40px;
-    margin-top: 60px;
-    color: #bbb;
-    font-size: 13px;
-    border-top: 1px solid #f0e6e2;
-}
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 77, 136, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .course-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark-berry);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .course-price {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: white;
+            background: var(--header-pink);
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            align-self: flex-start;
+            letter-spacing: 0.5px;
+        }
+
+        .course-features {
+            margin: 0 0 30px 0;
+            padding-left: 20px;
+            line-height: 1.6;
+            color: #5A454C;
+            font-size: 18px;
+        }
+
+        .course-features li {
+            margin-bottom: 10px;
+        }
+
+        .enroll-btn {
+            font-family: var(--font-sans);
+            background: var(--dark-berry);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .enroll-btn:hover {
+            background: var(--header-pink);
+            box-shadow: 0 5px 15px rgba(255, 46, 115, 0.3);
+        }
+
+        .learn-more-btn {
+            font-family: var(--font-sans);
+            background: transparent;
+            color: var(--header-pink);
+            border: 2px solid var(--header-pink);
+            padding: 10px 22px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .learn-more-btn:hover {
+            background: rgba(255, 46, 115, 0.05);
+        }
+
+        /* Beautiful Bottom Cart & Checkout Panel */
+        .cart-section {
+            background: linear-gradient(180deg, #FFEBF0 0%, #FFF5F7 100%);
+            border-top: 3px solid rgba(255, 46, 115, 0.1);
+            padding: 60px 8%;
+            margin-top: 80px;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .cart-items-cell {
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .cart-checkout-cell {
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 46, 115, 0.05);
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFF8F9;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 77, 136, 0.05);
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .cart-item-price {
+            color: var(--header-pink);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .remove-btn {
+            font-family: var(--font-sans);
+            background: none;
+            border: none;
+            color: #FF3366;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Premium Form Controls */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7A4F5D;
+            font-family: var(--font-sans);
+        }
+
+        .form-group input, .form-group textarea {
+            font-family: var(--font-sans);
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #FFE0E8;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: var(--transition);
+            background-color: #FFFDFE;
+            color: var(--dark-berry);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 77, 136, 0.1);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #FFE0E8;
+            font-size: 18px;
+        }
+
+        .total-row {
+            font-size: 24px;
+            color: var(--header-pink);
+            border-top: 2px solid var(--primary-pink);
+            font-weight: 700;
+            padding-top: 15px;
+        }
+
+        .whatsapp-order-btn {
+            font-family: var(--font-sans);
+            width: 100%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+            transition: var(--transition);
+        }
+
+        .whatsapp-order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #FFE6EE;
+            text-align: center;
+            padding: 40px;
+            color: #7A6B62;
+            font-size: 16px;
+            border-top: 1px solid #FFD1DF;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.95; }
+            50% { opacity: 1; transform: scale(1.01); }
+            100% { opacity: 0.95; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+            .video-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .courses-grid { grid-template-columns: 1fr; }
+            .cart-container { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; }
+            .video-card video { height: 380px; }
+        }
+        @media (max-width: 600px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .header-container { flex-direction: column; gap: 15px; }
+            .hero-title { font-size: 38px; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="overlay" id="blurOverlay" onclick="closeAllDrawers()"></div>
-
-<header>
-    <h1>Pragya Plush & Purl</h1>
-    <p class="tagline">Handmade Crochet Flowers, Plushies & Cute Crafts</p>
-    
-    <div class="nav-actions">
-        <button class="action-btn" onclick="toggleDrawer('wishlistDrawer')">
-            ❤️ <span class="badge" id="wishlistCount">0</span>
-        </button>
-        <button class="action-btn" onclick="toggleDrawer('cartDrawer')">
-            🛒 Bag <span class="badge" id="cartCount">0</span>
-        </button>
-    </div>
-</header>
-
-<div class="container">
-    <div class="search-box">
-        <input type="text" id="search" placeholder="Search unique crochet designs..." onkeyup="searchProducts()">
-    </div>
-
-    <div class="products" id="productList"></div>
-</div>
-
-<div class="drawer" id="cartDrawer">
-    <div class="drawer-header">
-        <h2>Your Shopping Bag 🛒</h2>
-        <button class="close-drawer" onclick="toggleDrawer('cartDrawer')">&times;</button>
-    </div>
-    
-    <div id="cartItems" style="flex-grow: 1; overflow-y: auto;"></div>
-
-    <div id="shippingBadge" class="shipping-badge" style="display: none;">
-        <span id="shippingLocation">📍 Region: --</span>
-        <span id="shippingFeeLabel">₹0</span>
-    </div>
-
-    <div class="total-breakdown">
-        <div class="breakdown-row">
-            <span>Subtotal:</span>
-            <span>₹<span id="subtotal">0</span></span>
+    <!-- Luxury Pink Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="brand">🌸 Pragya Plush & Purl</div>
+            <div class="nav-links">
+                <a onclick="scrollToSection('home')">Home</a>
+                <a onclick="scrollToSection('shop')">Collection</a>
+                <a onclick="scrollToSection('courses')">Academy</a>
+                <a onclick="scrollToSection('cart')" class="cart-btn-nav">
+                    🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+                </a>
+            </div>
         </div>
-        <div class="breakdown-row">
-            <span>Delivery:</span>
-            <span>₹<span id="deliveryCharge">0</span></span>
-        </div>
-        <div class="total">
-            <span>Total:</span>
-            <span>₹<span id="total">0</span></span>
-        </div>
-    </div>
+    </header>
 
-    <div class="input-container">
-        <input type="text" id="name" placeholder="👤 Your Name">
-    </div>
-    <div class="input-container">
-        <input type="text" id="phone" placeholder="📱 10-Digit Phone Number">
-    </div>
-    <div class="input-container">
-        <input type="text" id="pincode" maxlength="6" placeholder="📍 Pincode (6-Digits)" oninput="calculateShipping()">
-        <span id="pinWarning" style="color:#ff758c; font-size:11px; font-weight:700; display:block; margin-top:2px;">⚠️ Type 6-digits to auto-add delivery cost</span>
-    </div>
-    <div class="input-container">
-        <input type="text" id="cityStateDisplay" placeholder="Region auto-detected..." readonly style="background:#f9f9f9; color:#777;">
-    </div>
-    <div class="input-container">
-        <textarea id="address" rows="2" placeholder="🏠 Full Address details..."></textarea>
-    </div>
-
-    <button class="btn whatsapp" onclick="sendWhatsAppOrder()">Secure Checkout via WhatsApp</button>
-</div>
-
-<div class="drawer" id="wishlistDrawer">
-    <div class="drawer-header">
-        <h2>Your Wishlist ❤️</h2>
-        <button class="close-drawer" onclick="toggleDrawer('wishlistDrawer')">&times;</button>
-    </div>
-    <div id="wishlistItems" style="flex-grow: 1; overflow-y: auto;"></div>
-</div>
-
-<footer>
-    &copy; 2026 Pragya Plush & Purl. All designs handcrafted with love.
-</footer>
-
-<script>
-const whatsappNumber = "917800518854";
-
-const products = [
-    { id:1, name:"Blossom Bunny Plushie", price:150, image:"Blossom Bunny Plushie.jpg" },
-    { id:2, name:"Cozy Teddy Crochet Baby Cap", price:999, image:"Cozy Teddy Crochet Baby Cap.jpg" },
-    { id:3, name:"Golden Plushie", price:199, image:"Golden Plushie.jpg" },
-    { id:4, name:"Sunny Duck Plushie", price:199, image:"Sunny Duck Plushie.jpg" },
-    { id:5, name:"Teddy Crochet Baby Cap", price:999, image:"Teddy Crochet Baby Cap.jpg" },
-    { id:6, name:"Candy Stripe Handmade Blanket", price:1999, image:"Candy Stripe Handmade Blanket.jpg" },
-    { id:7, name:"Lavender Dreams Crochet Blanket", price:1999, image:"Lavender Dreams Crochet Blanket.jpg" },
-    { id:8, name:"Hoppy Frog Plushie", price:199, image:"Hoppy Frog Plushie.jpg" }
-];
-
-let cart = [];
-let wishlist = [];
-let deliveryFee = 0;
-let detectedZone = "";
-
-/* --- SIDE DRAWER TOGGLE ENGINE --- */
-function toggleDrawer(id) {
-    const drawer = document.getElementById(id);
-    const overlay = document.getElementById("blurOverlay");
-    
-    if(drawer.classList.contains('open')) {
-        drawer.classList.remove('open');
-        overlay.classList.remove('show');
-    } else {
-        closeAllDrawers(); // close others first
-        drawer.classList.add('open');
-        overlay.classList.add('show');
-    }
-}
-
-function closeAllDrawers() {
-    document.getElementById('cartDrawer').classList.remove('open');
-    document.getElementById('wishlistDrawer').classList.remove('open');
-    document.getElementById('blurOverlay').classList.remove('show');
-}
-
-/* --- RENDER PRODUCTS --- */
-function renderProducts(list=products){
-    let html='';
-    list.forEach(product=>{
-        const isWish = wishlist.includes(product.id) ? 'active' : '';
-        const heartSymbol = wishlist.includes(product.id) ? '❤️' : '🤍';
+    <!-- Interactive Showroom / Video Frame Section -->
+    <div class="hero-section" id="home">
+        <div class="hero-title">Artisan Crochet Showcase</div>
+        <div class="hero-subtitle">Meticulously handcrafted stitch by stitch with pure love & perfection</div>
         
-        html+=`
-        <div class="card">
-            <div class="card-img-wrapper">
-                <button class="wishlist-heart ${isWish}" onclick="toggleWishlist(${product.id})">${heartSymbol}</button>
-                <img src="${product.image}">
+        <div class="video-grid">
+            <div class="video-card">
+                <span class="video-overlay-tag">Studio Reel 1</span>
+                <video controls muted autoplay loop>
+                    <source src="VID-20260618-WA0002.MP4" type="video/mp4">
+                </video>
             </div>
-            <div class="card-content">
-                <h3>${product.name}</h3>
-                <div class="price">₹${product.price}</div>
-                <button class="btn" onclick="addToCart(${product.id})">Add To Bag</button>
+            <div class="video-card">
+                <span class="video-overlay-tag">Studio Reel 2</span>
+                <video controls muted autoplay loop>
+                    <source src="VID-20260618-WA0003.MP4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-card">
+                <span class="video-overlay-tag">Studio Reel 3</span>
+                <video controls muted autoplay loop>
+                    <source src="VID-20260618-WA0004.MP4" type="video/mp4">
+                </video>
             </div>
         </div>
-        `;
-    });
-    document.getElementById("productList").innerHTML=html;
-}
+    </div>
 
-function searchProducts(){
-    const value = document.getElementById("search").value.toLowerCase();
-    const filtered = products.filter(product => product.name.toLowerCase().includes(value));
-    renderProducts(filtered);
-}
+    <!-- Collection Hub -->
+    <div class="tabs-container" id="shop">
+        <div class="section-title">Explore Our Premium Catalog</div>
+        <button class="tab-btn active" onclick="filterCategory('all', this)">All Creations</button>
+        <button class="tab-btn" onclick="filterCategory('premium', this)">Premium Luxe</button>
+        <button class="tab-btn" onclick="filterCategory('toys', this)">Plush Toys</button>
+        <button class="tab-btn" onclick="filterCategory('blanket', this)">Cozy Blankets</button>
+        <button class="tab-btn" onclick="filterCategory('flowers', this)">Flowers & More</button>
+    </div>
 
-/* --- WISHLIST CORE LOGIC --- */
-function toggleWishlist(id) {
-    if(wishlist.includes(id)) {
-        wishlist = wishlist.filter(x => x !== id);
-    } else {
-        wishlist.push(id);
-    }
-    document.getElementById("wishlistCount").innerText = wishlist.length;
-    renderProducts();
-    renderWishlistDrawer();
-}
+    <!-- Products Space -->
+    <div style="padding: 0 8%;">
+        <div class="product-grid" id="productGrid">
+            <!-- Loaded dynamically with sleek styling -->
+        </div>
+    </div>
 
-function renderWishlistDrawer() {
-    let html = '';
-    if(wishlist.length === 0) {
-        html = '<p style="color:#aaa; text-align:center; margin-top:40px;">Your wishlist feels empty ✨</p>';
-    } else {
-        wishlist.forEach(id => {
-            const prod = products.find(p => p.id === id);
-            html += `
-            <div class="wishlist-item">
+    <!-- High-Converting Course / Academy Block -->
+    <div style="padding: 0 8%;" id="courses">
+        <div class="section-title">Pragya Crochet Masterclass</div>
+        
+        <div class="featured-course-box">
+            <h3>Learn Artistry with Pragya Plush & Purl</h3>
+            <p>From fundamental casting loops to master-grade complex Amigurumi patterns. Join our curated community, receive full interactive kits delivered right to your home step, and gain premium guided mentorship.</p>
+            <div style="font-size: 28px; font-weight: 700; color: #FFF; margin: 20px 0; letter-spacing: 1px;">Complete Interactive Course: ₹1500</div>
+            <button class="featured-course-btn" onclick="orderCourseViaWhatsApp('Special Complete Crochet Learning Course', 1500)">Claim Your Seat Now 🎟️</button>
+        </div>
+
+        <div class="courses-grid">
+            <!-- Course 1 -->
+            <div class="course-card">
                 <div>
-                    <strong>${prod.name}</strong><br><span style="color:#ff758c;">₹${prod.price}</span>
+                    <div class="course-title">Level 2: Amigurumi Online Masterclass</div>
+                    <div class="course-price">₹3500 + Kit ₹1000</div>
+                    <ul class="course-features">
+                        <li>Dedicated personal WhatsApp chat support</li>
+                        <li>Daily skill practice drills with feedback reviews</li>
+                        <li>10 days active assistance & 1-month full video recordings access</li>
+                        <li>Complete customized Beginner's kit shipped directly</li>
+                        <li>Authentic completion certificate award</li>
+                    </ul>
                 </div>
-                <button class="btn" style="width:auto; padding:6px 12px; font-size:12px;" onclick="moveFromWishToCart(${prod.id})">🛒 Move to Bag</button>
+                <button class="enroll-btn" onclick="orderCourseViaWhatsApp('Level 2: Amigurumi Online Course', 4500)">Enroll Today</button>
             </div>
-            `;
-        });
-    }
-    document.getElementById("wishlistItems").innerHTML = html;
-}
 
-function moveFromWishToCart(id) {
-    addToCart(id);
-    wishlist = wishlist.filter(x => x !== id);
-    document.getElementById("wishlistCount").innerText = wishlist.length;
-    renderProducts();
-    renderWishlistDrawer();
-    toggleDrawer('wishlistDrawer');
-    toggleDrawer('cartDrawer'); // Auto switch view
-}
-
-/* --- CART CORE LOGIC --- */
-function addToCart(id){
-    let item=cart.find(x=>x.id===id);
-    if(item){
-        item.qty++;
-    } else {
-        const product=products.find(x=>x.id===id);
-        cart.push({...product, qty:1});
-    }
-    renderCart();
-    
-    // Smooth user action: Open drawer instantly when item added
-    if(!document.getElementById('cartDrawer').classList.contains('open')) {
-        toggleDrawer('cartDrawer');
-    }
-}
-
-function changeQty(id,change){
-    let item=cart.find(x=>x.id===id);
-    item.qty+=change;
-    if(item.qty<=0){
-        cart=cart.filter(x=>x.id!==id);
-    }
-    renderCart();
-}
-
-function renderCart(){
-    let html='';
-    let subtotal=0;
-    let totalItems = 0;
-    
-    cart.forEach(item=>{
-        subtotal+=item.price*item.qty;
-        totalItems+=item.qty;
-        html+=`
-        <div class="cart-item">
-            <div>
-                <strong>${item.name}</strong><br><span style="color:#888; font-size:13px;">₹${item.price}</span>
+            <!-- Course 2 -->
+            <div class="course-card">
+                <div>
+                    <div class="course-title">LEVEL 1: Premium One-on-One Live Session</div>
+                    <div class="course-price">₹7000 + Kit ₹1000</div>
+                    <ul class="course-features">
+                        <li>100% personalized live mentorship tracks</li>
+                        <li>Completely flexible custom start calendars</li>
+                        <li>Daily portfolio corrections & premium pattern access</li>
+                        <li>Extended 1-month high-definition replay streams</li>
+                        <li>Dedicated masterclass certificate validation</li>
+                    </ul>
+                </div>
+                <button class="enroll-btn" onclick="orderCourseViaWhatsApp('LEVEL 1: Crochet & Amigurumi One-on-One', 8000)">Book Solo Slot</button>
             </div>
-            <div>
-                <button class="qty-btn" onclick="changeQty(${item.id},-1)">-</button>
-                <span style="font-weight:700; margin:0 4px;">${item.qty}</span>
-                <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+
+            <!-- Course 3 -->
+            <div class="course-card">
+                <div>
+                    <div class="course-title">Advanced: Amigurumi Lilly Bunny Doll</div>
+                    <div class="course-price">₹3000</div>
+                    <ul class="course-features">
+                        <li>Exclusive pattern blueprint access</li>
+                        <li>Comprehensive high definition macro guide PDF</li>
+                        <li>Step-by-step master micro-video execution vaults</li>
+                        <li>5 days high priority query chat assistance</li>
+                    </ul>
+                </div>
+                <button class="enroll-btn" onclick="orderCourseViaWhatsApp('Advanced Course: Amigurumi Lilly Bunny Doll', 3000)">Unlock Pattern</button>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card">
+                <div>
+                    <div class="course-title">LEVEL 1: Interactive Group Cohort Session</div>
+                    <div class="course-price">₹5000 + Kit ₹1000</div>
+                    <ul class="course-features">
+                        <li>Community group interactive chat support channel</li>
+                        <li>Structured, highly interactive lesson schedules</li>
+                        <li>Extended 2 months video recording archive library access</li>
+                        <li>Premium yarn raw supplies package kit included</li>
+                    </ul>
+                </div>
+                <button class="enroll-btn" onclick="orderCourseViaWhatsApp('LEVEL 1: Crochet & Amigurumi Group Session', 6000)">Join Cohort</button>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card">
+                <div>
+                    <div class="course-title">Crochet Offline Class - 3 Days Intensive Workshop</div>
+                    <div class="course-price">₹4500 + Kit ₹1000</div>
+                    <ul class="course-features">
+                        <li><strong>Schedule:</strong> July 6, 7, 8 (3 Hours/Day)</li>
+                        <li><strong>Studio Location:</strong> Mohali Center</li>
+                        <li>Premium physically curated project materials included</li>
+                        <li>Gourmet high tea refreshments served</li>
+                        <li>Strictly capped capacity: Only 7–8 limited seats</li>
+                    </ul>
+                </div>
+                <button class="enroll-btn" onclick="orderCourseViaWhatsApp('Crochet Offline Class - 3 Days Workshop Mohali', 5500)">Reserve Seat</button>
             </div>
         </div>
-        `;
-    });
-    
-    document.getElementById("cartCount").innerText = totalItems;
-    document.getElementById("cartItems").innerHTML=html;
-    document.getElementById("subtotal").innerText=subtotal;
-    updateTotalOnly();
-}
+    </div>
 
-/* --- AUTOMATIC SHIPPING SYSTEM --- */
-function calculateShipping() {
-    const pincode = document.getElementById("pincode").value.trim();
-    const cityStateInput = document.getElementById("cityStateDisplay");
-    const badge = document.getElementById("shippingBadge");
-    const locLabel = document.getElementById("shippingLocation");
-    const feeLabel = document.getElementById("shippingFeeLabel");
-    const pinWarning = document.getElementById("pinWarning");
+    <!-- Soft Elegant Bottom Side Checkout Zone -->
+    <div class="cart-section" id="cart">
+        <div class="section-title">Review Your Selected Luxury Pieces</div>
+        
+        <div class="cart-container">
+            <div class="cart-items-cell">
+                <h3 style="margin-top:0; color: var(--dark-berry); font-size: 32px;">Shopping Bag</h3>
+                <div id="cartItemsList">
+                    <p style="color:#A07E88; font-style:italic;">Your shopping cart is currently empty. Discover our items above!</p>
+                </div>
+            </div>
 
-    if (pincode.length < 6) {
-        deliveryFee = 0;
-        detectedZone = "";
-        cityStateInput.value = "";
-        badge.style.display = "none";
-        pinWarning.style.display = "block";
-        updateTotalOnly();
-        return;
-    }
+            <div class="cart-checkout-cell">
+                <h3 style="margin-top:0; color: var(--dark-berry); font-size: 32px;">Secure Order Checkout</h3>
+                
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="custName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="custPhone" placeholder="Enter 10-digit number" required>
+                </div>
 
-    pinWarning.style.display = "none";
-    const regionDigit = pincode.charAt(0);
-    
-    if (regionDigit === '1') {
-        detectedZone = "Delhi, Haryana, Punjab & North";
-        deliveryFee = 60;
-    } else if (regionDigit === '2') {
-        detectedZone = "UP & Uttarakhand Zone";
-        deliveryFee = 50;
-    } else if (regionDigit === '3') {
-        detectedZone = "Rajasthan & Gujarat Region";
-        deliveryFee = 80;
-    } else if (regionDigit === '4') {
-        detectedZone = "Maharashtra, MP & CG";
-        deliveryFee = 90;
-    } else if (regionDigit === '5' || regionDigit === '6') {
-        detectedZone = "South India Zone";
-        deliveryFee = 120;
-    } else if (regionDigit === '7') {
-        detectedZone = "WB, Odisha & North East";
-        deliveryFee = 140;
-    } else if (regionDigit === '8') {
-        detectedZone = "Bihar & Jharkhand Region";
-        deliveryFee = 90;
-    } else {
-        detectedZone = "Standard Domestic Cargo";
-        deliveryFee = 100;
-    }
+                <div class="form-group">
+                    <label>Shipping Address</label>
+                    <textarea id="custAddress" rows="3" placeholder="Apartment, Street, Landmark, City, State" required></textarea>
+                </div>
 
-    cityStateInput.value = detectedZone;
-    locLabel.innerText = `📍 Region: ${detectedZone}`;
-    feeLabel.innerText = `₹${deliveryFee}`;
-    badge.style.display = "flex";
+                <div class="form-group">
+                    <label>India Pincode</label>
+                    <input type="text" id="custPincode" maxlength="6" placeholder="e.g. 160055" oninput="calculateDelivery()" required>
+                </div>
 
-    updateTotalOnly();
-}
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span style="font-weight:700;">₹<span id="subtotalPrice">0</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Courier Delivery Fee:</span>
+                    <span id="deliveryChargeText" style="font-weight:700;">₹0</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Grand Total:</span>
+                    <span>₹<span id="grandTotalPrice">0</span></span>
+                </div>
 
-function updateTotalOnly() {
-    let subtotal = parseInt(document.getElementById("subtotal").innerText) || 0;
-    document.getElementById("deliveryCharge").innerText = deliveryFee;
-    document.getElementById("total").innerText = subtotal + deliveryFee;
-}
+                <button class="whatsapp-order-btn" onclick="submitOrderToWhatsApp()">💬 Instant checkout via WhatsApp</button>
+            </div>
+        </div>
+    </div>
 
-/* --- WHATSAPP CHECKOUT --- */
-function sendWhatsAppOrder(){
-    if(cart.length===0){
-        alert("Your bag is empty!");
-        return;
-    }
+    <footer>
+        <p style="font-size:24px; font-weight:700; margin-bottom:5px; color: var(--dark-berry);">Pragya Plush & Purl</p>
+        <p>Premium Luxury Handcrafted Crochet Art & Plushies</p>
+        <p style="margin-top:15px; font-size:14px; opacity:0.7; font-family: var(--font-sans);">&copy; 2026 All Rights Reserved.</p>
+    </footer>
 
-    let name=document.getElementById("name").value.trim();
-    let phone=document.getElementById("phone").value.trim();
-    let pincode=document.getElementById("pincode").value.trim();
-    let address=document.getElementById("address").value.trim();
+    <script>
+        const products = [
+            { id: 1, name: "Blossom Bunny Plushie", price: 150, image: "Blossom Bunny Plushie.jpg", category: "toys", badge: "Best Seller" },
+            { id: 2, name: "Cozy Teddy Crochet Baby Cap", price: 999, image: "Cozy Teddy Crochet Baby Cap.jpg", category: "premium", badge: "Luxe Tier" },
+            { id: 3, name: "Golden Plushie", price: 199, image: "Golden Plushie.jpg", category: "toys", badge: "Trending" },
+            { id: 4, name: "Sunny Duck Plushie", price: 199, image: "Sunny Duck Plushie.jpg", category: "toys", badge: "Cute Pick" },
+            { id: 5, name: "Teddy Crochet Baby Cap", price: 999, image: "Teddy Crochet Baby Cap.jpg", category: "premium", badge: "Luxe Tier" },
+            { id: 6, name: "Candy Stripe Handmade Blanket", price: 1999, image: "Candy Stripe Handmade Blanket.jpg", category: "blanket", badge: "Handcrafted" },
+            { id: 7, name: "Lavender Dreams Crochet Blanket", price: 1999, image: "Lavender Dreams Crochet Blanket.jpg", category: "blanket", badge: "Pure Luxury" },
+            { id: 8, name: "Hoppy Frog Plushie", price: 199, image: "Hoppy Frog Plushie.jpg", category: "toys", badge: "New Arrival" }
+        ];
 
-    if(!name || !phone || !pincode || !address){
-        alert("Please complete Name, Phone, Pincode, and Full Address fields inside the cart drawer!");
-        return;
-    }
+        let cart = [];
+        let deliveryCharge = 0;
+        const WHATSAPP_NUMBER = "91788887876";
 
-    let subtotal=0;
-    let msg = "✨ *NEW ORDER - PRAGYA PLUSH & PURL* ✨\n\n";
-    msg += "👤 *Name:* " + name + "\n";
-    msg += "📱 *Phone:* " + phone + "\n";
-    msg += "📮 *Pincode:* " + pincode + " ("+(detectedZone || "Verified")+")\n";
-    msg += "🏠 *Address:* " + address + "\n\n";
-    msg += "📦 *Items Ordered:* \n";
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            
+            products.forEach(p => {
+                if (filter !== 'all' && p.category !== filter) return;
 
-    cart.forEach(item=>{
-        let itemCost = item.price * item.qty;
-        subtotal += itemCost;
-        msg += `• ${item.name} (x${item.qty}) = ₹${itemCost}\n`;
-    });
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="product-image" style="background-image: url('${p.image}');">
+                            <span class="product-badge">${p.badge}</span>
+                        </div>
+                        <div class="product-name">${p.name}</div>
+                    </div>
+                    <div class="product-price-row">
+                        <div class="product-price">₹${p.price}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add 🛒</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-    msg += `\n💵 *Subtotal:* ₹${subtotal}`;
-    msg += `\n🚚 *Delivery:* ₹${deliveryFee}`;
-    msg += `\n💰 *Grand Total:* ₹${subtotal + deliveryFee}`;
-    msg += `\n\nPlease confirm my order! 💕`;
+        function filterCategory(category, element) {
+            const tabs = document.getElementsByClassName('tab-btn');
+            for(let t of tabs) { t.classList.remove('active'); }
+            element.classList.add('active');
+            renderProducts(category);
+        }
 
-    let finalLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-    window.open(finalLink, "_blank");
-}
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            if (prod) {
+                cart.push(prod);
+                updateCartUI();
+            }
+        }
 
-// Initial setup
-renderProducts();
-</script>
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
 
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            const listContainer = document.getElementById('cartItemsList');
+            
+            if (cart.length === 0) {
+                listContainer.innerHTML = `<p style="color:#A07E88; font-style:italic;">Your shopping cart is currently empty. Discover our items above!</p>`;
+                document.getElementById('subtotalPrice').innerText = '0';
+                document.getElementById('grandTotalPrice').innerText = '0';
+                document.getElementById('deliveryChargeText').innerText = '₹0';
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item-row';
+                div.innerHTML = `
+                    <div>
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove ✕</button>
+                `;
+                listContainer.appendChild(div);
+            });
+
+            document.getElementById('subtotalPrice').innerText = subtotal;
+            calculateDelivery();
+        }
+
+        function calculateDelivery() {
+            const subtotal = parseFloat(document.getElementById('subtotalPrice').innerText || 0);
+            if (subtotal === 0) {
+                deliveryCharge = 0;
+                document.getElementById('deliveryChargeText').innerText = '₹0';
+                document.getElementById('grandTotalPrice').innerText = '0';
+                return;
+            }
+
+            if (subtotal >= 1500) {
+                deliveryCharge = 0;
+                document.getElementById('deliveryChargeText').innerHTML = `<span style="color:#25D366; font-weight:bold;">✨ FREE Delivery</span>`;
+                document.getElementById('grandTotalPrice').innerText = subtotal;
+                return;
+            }
+
+            const pincode = document.getElementById('custPincode').value.trim();
+            if (pincode.length >= 1) {
+                const zone = pincode.charAt(0);
+                switch(zone) {
+                    case '1': deliveryCharge = 50; break;
+                    case '2': deliveryCharge = 60; break;
+                    case '3': deliveryCharge = 70; break;
+                    case '4': deliveryCharge = 80; break;
+                    case '5': deliveryCharge = 90; break;
+                    case '6': deliveryCharge = 95; break;
+                    case '7': deliveryCharge = 110; break;
+                    case '8': deliveryCharge = 85; break;
+                    default: deliveryCharge = 75;
+                }
+            } else {
+                deliveryCharge = 60;
+            }
+
+            document.getElementById('deliveryChargeText').innerText = '₹' + deliveryCharge;
+            document.getElementById('grandTotalPrice').innerText = (subtotal + deliveryCharge);
+        }
+
+        function submitOrderToWhatsApp() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const pincode = document.getElementById('custPincode').value.trim();
+
+            if (!name || !phone || !address || !pincode) {
+                alert("Please fill in all mandatory checkout details!");
+                return;
+            }
+
+            let itemDetails = "";
+            cart.forEach((item, index) => {
+                itemDetails += `${index + 1}. ${item.name} - ₹${item.price}\n`;
+            });
+
+            const subtotal = document.getElementById('subtotalPrice').innerText;
+            const grandTotal = document.getElementById('grandTotalPrice').innerText;
+            const deliveryCostStr = (parseFloat(subtotal) >= 1500) ? "FREE Luxury Shipping" : `₹${deliveryCharge}`;
+
+            let message = `*🌸 NEW BOUTIQUE ORDER - PRAGYA PLUSH & PURL 🌸*\n\n`;
+            message += `*👤 CLIENT INFORMATION:*\n`;
+            message += `• *Name:* ${name}\n`;
+            message += `• *Phone:* ${phone}\n`;
+            message += `• *Shipping Address:* ${address}\n`;
+            message += `• *Pincode:* ${pincode}\n\n`;
+            
+            message += `*🛍️ PIECES ORDERED:*\n${itemDetails}\n`;
+            message += `*💰 INVOICE SUMMARY:*\n`;
+            message += `• *Subtotal Amount:* ₹${subtotal}\n`;
+            message += `• *Delivery Rate:* ${deliveryCostStr}\n`;
+            message += `• *TOTAL PAYABLE:* *₹${grandTotal}*\n\n`;
+            message += `Please confirm order fulfillment details. Thank you! ✨`;
+
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function orderCourseViaWhatsApp(courseName, coursePrice) {
+            let message = `*📚 NEW ACADEMY ENROLLMENT - PRAGYA PLUSH & PURL *\n\n`;
+            message += `Hello! I would love to enroll in the following crochet training track:\n\n`;
+            message += `• *Course Name:* ${courseName}\n`;
+            message += `• *Tuition Fee:* ₹${coursePrice}\n\n`;
+            message += `Please share onboarding schedules and active payment handles. Thank you!`;
+
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            renderProducts('all');
+        };
+    </script>
 </body>
 </html>
